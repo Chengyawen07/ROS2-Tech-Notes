@@ -150,8 +150,49 @@ if __name__ == '__main__':
 
 ------
 
+
+
+### ROS 2 中的实现方式
+
+发布者节点：
+
+- publisher = node.create_publisher(String, 'topic_name', 10)
+
+订阅者节点：
+
+- subscription = node.create_subscription(String, 'topic_name', callback_function, 10)
+
+服务器节点：
+
+- service = node.create_service(MyServiceType, 'service_name', handle_service_request) 
+
+客户端节点：
+
+- client = node.create_client(MyServiceType, 'service_name')
+
+#### 适用场景：
+
+- 话题的适用场景：
+
+激光雷达、IMU、GPS等传感器数据的实时流。
+机器人的状态发布和传输（如位置、速度、传感器状态等）。
+机器人感知信息的持续更新（如环境地图、图像流等）。
+
+- 服务的适用场景：
+
+获取机器人当前位置或特定参数（如位置、传感器状态）。
+请求机器人执行特定的任务（如启动、停止动作、调整电机速度）。
+请求机器人状态或传感器配置（如获取电池电量、读取配置参数等）。
+
 ### **总结**
 
 - **服务（Service）：** 适用于需要立即反馈的场景，如查询状态或发送控制命令。
 - **话题（Topic）：** 更适合持续的数据流，如传感器数据或状态广播。
 - **选择依据：** 根据任务的实时性和数据特性，选择服务或话题作为通信方式。
+
+
+
+
+
+
+
